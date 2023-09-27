@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/banking.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section>
+            <div class="container">
+                <div><h2 class="text-center my-5">Lets get some <span class="textDesign">moneyy !!!!</span> </h2></div>
+                <div class="row gap-5 d-flex justify-content-center align-items-center">
+                    <div class="col bg-success-subtle p-5 rounded-5">
+                        <h2>Deposit</h2>
+                        <h3>$<span id="depositResult">000</span></h3>
+                    </div>
+                    <div class="col bg-warning-subtle p-5 rounded-5">
+                        <h2>Withdraw</h2>
+                        <h3>$<span id="withdraw">000</span></h3>
+                    </div>
+                    <div class="col bg-info-subtle p-5 rounded-5">
+                        <h2>Balance</h2>
+                        <h3>$<span id="balance">1500</span></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container my-5">
+                <div class="row gap-4">
+                    <div class="col bg-success-subtle p-4">
+                        <h2>Please Deposit</h2>
+                        <p><input type="text" class="input-group" placeholder="Deposit amount" id="depositAmmount"></p>
+                        <div><button class="btn-success" id="depositButton">Deposit</button></div>
+                    </div>
+                    <div class="col bg-danger-subtle p-4">
+                        <h2>Withdraw Amount</h2>
+                        <p><input type="text" class="input-group" placeholder="Withdraw amount" id="withdrawAmount"></p>
+                        <div><button class="btn-success" id="withdrawButton">Withdraw</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/banking.js"></script>
+</body>
+</html>
