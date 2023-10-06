@@ -1,44 +1,55 @@
-document.getElementById("depositButton").addEventListener("click", function () {
-    const depositField = document.getElementById("depositAmmount");
-    const depositInput = depositField.value;
-    const depositAmmount = parseFloat(depositInput);
+function moneyInput(inputId) {
+    const inputField = document.getElementById(inputId);
+    const inputText = inputField.value;
+    const depositAmmount = parseFloat(inputText);
+    inputField.value ="";
+    return depositAmmount;
+}
 
-    // deposit site
-    const depositTxtField = document.getElementById("depositResult");
+function updateTotal(depositId,depositAmmount) {
+    const depositTxtField = document.getElementById(depositId);
     const previousDepositText = depositTxtField.innerText;
     const previousDepositAmount = parseFloat(previousDepositText);
     depositTxtField.innerText = previousDepositAmount + depositAmmount;
+}
 
-    // balance site
+function getCurrentBalance() {
+    const depositTxtField = document.getElementById("balance");
+    const previousDepositText = depositTxtField.innerText;
+    const previousDepositAmount = parseFloat(previousDepositText);
+    return previousDepositAmount;
+}
 
-    const balanceTxtField = document.getElementById("balance");
-    const previousBalanceTxt = balanceTxtField.innerText;
-    const previousBalanceAmount = parseFloat(previousBalanceTxt);
-    balanceTxtField.innerText = previousBalanceAmount + depositAmmount;
+function updateBalance(depositAmmount,boolean) {
+    const depositTxtField = document.getElementById("balance");
+    const previousDepositAmount = getCurrentBalance();
+    if(boolean == true){
+        depositTxtField.innerText = previousDepositAmount + depositAmmount;
+    }else{
+        depositTxtField.innerText = previousDepositAmount - depositAmmount;
+    }
+}
 
-    depositField.value ="";
+document.getElementById("depositButton").addEventListener("click", function () {
+    const depositAmmount = moneyInput("depositAmmount")
+
+    // money adding
+    if(depositAmmount > 0){
+        updateTotal("depositResult",depositAmmount)
+        // balance site
+        updateBalance(depositAmmount,true)
+    }
+
 })
 
 
 document.getElementById("withdrawButton").addEventListener("click", function () {
-    const withdrawField = document.getElementById("withdrawAmount");
-    const withdrawInput = withdrawField.value;
-    const withdrawAmount = parseFloat(withdrawInput);
-
-    // withdraw add
-
-    const balanceTxtField = document.getElementById("balance");
-    const previousBalanceTxt = balanceTxtField.innerText;
-    const previousBalanceAmount = parseFloat(previousBalanceTxt);
-    const newBalance = previousBalanceAmount - withdrawAmount;
-    balanceTxtField.innerText = newBalance;
-
-    // withdraw amount add 
-
-    const withdrawTxtField = document.getElementById("withdraw");
-    const previousWithdrawTxt = withdrawTxtField.innerText;
-    const previousWithdrawAmount = parseFloat(previousWithdrawTxt)
-    const newWithdraw = previousWithdrawAmount + withdrawAmount;
-    withdrawTxtField.innerText = newWithdraw;
-    withdrawField.value = "";
+    const withdrawAmount = moneyInput("withdrawAmount");
+    const previousDepositAmount = getCurrentBalance();
+    if(withdrawAmount > 0 && withdrawAmount < previousDepositAmount){
+        updateTotal("withdraw",withdrawAmount);
+        updateBalance(withdrawAmount,false);
+    }else if(withdrawAmount > previousDepositAmount){
+        alert("tui shala chor")
+    }
 })
